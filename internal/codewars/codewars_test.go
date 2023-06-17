@@ -1,6 +1,9 @@
 package codewars
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func assertCorrectMessage(t testing.TB, got, want string) {
 	t.Helper()
@@ -16,6 +19,13 @@ func assertCorrectNumber(t testing.TB, got, want int) {
 	}
 }
 
+func assertCorrectBool(t testing.TB, got, want bool) {
+	t.Helper()
+	if got != want {
+		t.Errorf("got %v, want %v", got, want)
+	}
+}
+
 func TestReverseString(t *testing.T) {
 	got := ReverseString("Привет!")
 	want := "!тевирП"
@@ -27,22 +37,18 @@ func TestCheckForFacror(t *testing.T) {
 	got := CheckForFacror(6, 3)
 	want := true
 
-	if got != want {
-		t.Errorf("got %v, want %v", got, want)
-	}
+	assertCorrectBool(t, got, want)
 }
 
 func TestGrow(t *testing.T) {
 	got := Grow([]int{1, 2, 3, 4})
 	want := 24
 
-	if got != want {
-		t.Errorf("got %d, want %d", got, want)
-	}
+	assertCorrectNumber(t, got, want)
 }
 
-func TestGreet(t *testing.T) {
-	got := Greet()
+func TestGreeting(t *testing.T) {
+	got := Greeting()
 	want := "hello world!"
 
 	assertCorrectMessage(t, got, want)
@@ -53,4 +59,36 @@ func TestStringToNumber(t *testing.T) {
 	want := -7
 
 	assertCorrectNumber(t, got, want)
+}
+
+func TestSetAlarm(t *testing.T) {
+	t.Run("true ortions - employed and not on vacation ", func(t *testing.T) {
+		got := SetAlarm(true, false)
+		want := true
+
+		assertCorrectBool(t, got, want)
+	})
+
+	t.Run("false ortions - employed and not on vacation ", func(t *testing.T) {
+		got := SetAlarm(false, true)
+		want := false
+
+		assertCorrectBool(t, got, want)
+	})
+}
+
+func TestRepeatStr(t *testing.T) {
+	got := RepeatStr(6, "I")
+	want := "IIIIII"
+
+	assertCorrectMessage(t, got, want)
+}
+
+func TestDoubleSliceInt(t *testing.T) {
+	got := DoubleSliceInt([]int{1, 2, 3})
+	want := []int{2, 4, 6}
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("got %v, want %v", got, want)
+	}
 }

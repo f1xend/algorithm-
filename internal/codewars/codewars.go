@@ -1,7 +1,9 @@
 package codewars
 
 import (
+	"fmt"
 	"strconv"
+	"strings"
 )
 
 func CheckForFacror(base, factor int) bool {
@@ -34,7 +36,7 @@ func Grow(arr []int) int {
 	return summ
 }
 
-func Greet() string {
+func Greeting() string {
 	return "hello world!"
 }
 
@@ -43,6 +45,40 @@ func StringToNumber(str string) int {
 
 	if err != nil {
 		panic(err)
+	}
+	return res
+}
+
+func Greet(name string) string {
+	if name == "" {
+		name = "World"
+	}
+	return fmt.Sprintf("Hello, %s how are you doing today?", name)
+}
+
+func SetAlarm(employed, vacation bool) bool {
+	return !vacation && employed
+}
+
+func RepeatStr(repetitions int, value string) string {
+	resStr := ""
+	for repetitions > 0 {
+		resStr += value
+		repetitions--
+	}
+	return resStr
+}
+
+func StringToArray(str string) []string {
+	return strings.Split(str, " ")
+}
+
+func DoubleSliceInt(x []int) []int {
+	res := make([]int, (len(x)))
+	if len(x) != 0 {
+		for i, v := range x {
+			res[i] = v * 2
+		}
 	}
 	return res
 }
