@@ -4,6 +4,7 @@ import (
 	"algorithm/internal/codewars"
 	yandexp "algorithm/internal/yandexP"
 	"fmt"
+	"time"
 )
 
 type MyStruct struct {
@@ -49,4 +50,19 @@ func main() {
 	s.Log("some string")
 
 	fmt.Println(codewars.Greet("Ruslan"))
+
+	sw := yandexp.Stopwatch{}
+	sw.Start()
+
+	time.Sleep(1 * time.Second)
+	sw.SaveSplit()
+
+	time.Sleep(500 * time.Millisecond)
+	sw.SaveSplit()
+
+	time.Sleep(300 * time.Millisecond)
+	sw.SaveSplit()
+
+	fmt.Println(sw.GetResults())
+	// fmt.Println(sw.Current, sw.DurrList)
 }

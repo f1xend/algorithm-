@@ -82,3 +82,7 @@ func DoubleSliceInt(x []int) []int {
 	}
 	return res
 }
+
+func Hero(bullets, dragons int) bool {
+	return bullets-dragons*2 >= 0
+}

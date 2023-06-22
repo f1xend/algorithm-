@@ -1,6 +1,9 @@
 package yandexp
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 const (
 	DeliveryStatePending   DeliveryState = "pending"      // message pending
@@ -17,6 +20,26 @@ type CircularBuffer struct {
 	tailIdx int       // index tail (last empty element)
 }
 type IntSlice []int
+
+type Stopwatch struct {
+	current  time.Time
+	durrList []time.Duration
+}
+
+// Start for record current time
+func (sw *Stopwatch) Start() {
+	sw.current = time.Now()
+}
+
+// SaveSplit for record durration between current and now
+func (sw *Stopwatch) SaveSplit() {
+	sw.durrList = append(sw.durrList, time.Since(sw.current))
+}
+
+// GetResults for return durrList
+func (sw *Stopwatch) GetResults() []time.Duration {
+	return sw.durrList
+}
 
 func (s *IntSlice) Add(v int) {
 	*s = append(*s, v)
