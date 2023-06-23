@@ -63,6 +63,13 @@ func main() {
 	time.Sleep(300 * time.Millisecond)
 	sw.SaveSplit()
 
-	fmt.Println(sw.GetResults())
+	// fmt.Println(sw.GetResults())
 	// fmt.Println(sw.Current, sw.DurrList)
+
+	logger := yandexp.NewLogExtended()
+	logger.SetLogLevel(yandexp.LogLevelWarning)
+	logger.Infoln("Не должно напечататься")
+	logger.Warnln("Hello")
+	logger.Errorln("World")
+	logger.Println("Debug")
 }

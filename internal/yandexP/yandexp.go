@@ -2,6 +2,8 @@ package yandexp
 
 import (
 	"fmt"
+	"log"
+	"os"
 	"time"
 )
 
@@ -11,6 +13,61 @@ const (
 	DeliveryStateProcessed DeliveryState = "precessed"    //sucseess
 	DeliveryStateCanceled  DeliveryState = "canceled"     // canceled
 )
+
+type LogLevel int
+
+const (
+	LogLevelError LogLevel = iota * 1
+	LogLevelWarning
+	LogLevelInfo
+)
+
+func (l LogLevel) IsValid() bool {
+	switch l {
+	case LogLevelInfo, LogLevelWarning, LogLevelError:
+		return true
+	default:
+		return false
+	}
+}
+
+type Mylog struct {
+	logLevel LogLevel
+	*log.Logger
+}
+
+func NewLogExtended() *Mylog {
+	return &Mylog{
+		Logger:   log.New(os.Stderr, "", log.LstdFlags),
+		logLevel: LogLevelError,
+	}
+}
+
+func (l *Mylog) SetLogLevel(logLvl LogLevel) {
+	if !logLvl.IsValid() {
+		return
+	}
+	l.logLevel = logLvl
+}
+
+func (l *Mylog) Infoln(msg string) {
+	l.println(LogLevelInfo, "INFO ", msg)
+}
+
+func (l *Mylog) Warnln(msg string) {
+	l.println(LogLevelWarning, "WARN ", msg)
+}
+
+func (l *Mylog) Errorln(msg string) {
+	l.println(LogLevelError, "ERR ", msg)
+}
+
+func (l *Mylog) println(srcLogLvl LogLevel, prefix, msg string) {
+	// игнорируем сообщения, если уровень логгера меньше scrLogLvl
+	if l.logLevel >= srcLogLvl {
+		l.Logger.Println(prefix + msg)
+	}
+}
 
 type MyType int
 type DeliveryState string
