@@ -92,3 +92,60 @@ func TestDoubleSliceInt(t *testing.T) {
 		t.Errorf("got %v, want %v", got, want)
 	}
 }
+
+// 7 kyu tasks
+func TestHero(t *testing.T) {
+	cases := []struct {
+		Name  string
+		Input struct {
+			Bullets int
+			Dragons int
+		}
+		ExpectedCalls bool
+	}{
+		{
+			"enouth bullets to win some dragons",
+			struct {
+				Bullets int
+				Dragons int
+			}{10, 5},
+			true,
+		},
+		{
+			"not enouth bullets to win some dragons",
+			struct {
+				Bullets int
+				Dragons int
+			}{7, 4},
+			false,
+		},
+		{
+			"check 0 bullets and 1 dragon",
+			struct {
+				Bullets int
+				Dragons int
+			}{0, 1},
+			false,
+		},
+		{
+			"check 0 dragons and 1 bullet",
+			struct {
+				Bullets int
+				Dragons int
+			}{1, 0},
+			true,
+		},
+	}
+	for _, test := range cases {
+		t.Run(test.Name, func(t *testing.T) {
+			bullets := test.Input.Bullets
+			dragons := test.Input.Dragons
+			got := Hero(bullets, dragons)
+
+			want := test.ExpectedCalls
+
+			assertCorrectBool(t, got, want)
+		})
+	}
+
+}
