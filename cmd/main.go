@@ -66,10 +66,35 @@ func main() {
 	// fmt.Println(sw.GetResults())
 	// fmt.Println(sw.Current, sw.DurrList)
 
-	logger := yandexp.NewLogExtended()
-	logger.SetLogLevel(yandexp.LogLevelWarning)
-	logger.Infoln("Не должно напечататься")
-	logger.Warnln("Hello")
-	logger.Errorln("World")
-	logger.Println("Debug")
+	// logger := yandexp.NewLogExtended()
+	// logger.SetLogLevel(yandexp.LogLevelWarning)
+	// logger.Infoln("Не должно напечататься")
+	// logger.Warnln("Hello")
+	// logger.Errorln("World")
+	// logger.Println("Debug")
+
+	// generator := yandexp.New(time.Now().UnixNano())
+
+	// buff := make([]byte, 16)
+
+	// for i := 0; i < 5; i++ {
+	// 	n, _ := generator.Read(buff) // единственный доступный метод, но он нам и нужен.
+	// 	fmt.Printf("Generate bytes: %v size(%d)\n", buff, n)
+	// }
+
+	// hasher := yandexp.NewHasher(0)
+	// hasher.Write(buff)
+	// fmt.Printf("Hash: %v \n", hasher.Hash())
+
+	// w := strings.Builder{}
+
+	// for i := 0; i < 50; i++ {
+	// 	fmt.Fprintf(&w, "%v", math.NaN())
+	// }
+
+	// w.Write([]byte("... BATMAN!"))
+
+	// fmt.Printf("%s\n", &w)
+
+	fmt.Println(yandexp.Mul(2, 6))
 }
