@@ -1,7 +1,13 @@
 package main
 
+import (
+	intersectarr "algorithm/internal/leetcode/intersect_arr"
+	"fmt"
+)
+
 func main() {
 
+	fmt.Println(intersectarr.Intersect([]int{2, 1}, []int{1, 1}))
 }
 
 // import (
