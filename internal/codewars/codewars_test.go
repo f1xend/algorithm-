@@ -3,6 +3,8 @@ package codewars
 import (
 	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func assertCorrectMessage(t testing.TB, got, want string) {
@@ -148,4 +150,37 @@ func TestHero(t *testing.T) {
 		})
 	}
 
+}
+
+func TestStrEndsWith(t *testing.T) {
+	cases := []struct {
+		name     string
+		str      string
+		ending   string
+		expected bool
+	}{
+		{
+			name:     "case 1",
+			str:      "abc",
+			ending:   "bc",
+			expected: true,
+		},
+		{
+			name:     "case 1",
+			str:      "abc",
+			ending:   "d",
+			expected: false,
+		},
+	}
+
+	for _, tc := range cases {
+		tc := tc
+
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
+			got := StrEndsWith(tc.str, tc.ending)
+			require.Equal(t, tc.expected, got)
+		})
+	}
 }
