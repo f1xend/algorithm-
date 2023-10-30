@@ -30,5 +30,7 @@
 package jumpgame
 
 func canReach(s string, minJump int, maxJump int) bool {
-	return len(s)-1 == minJump+maxJump
+	i, j := 0, len(s)-1
+
+	return i+minJump <= j && j <= min(i+minJump+maxJump, j) && s[j] == '0'
 }
