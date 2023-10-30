@@ -1,7 +1,12 @@
 package main
 
-func main() {
+import (
+	"algorithm/internal/codewars"
+	"fmt"
+)
 
+func main() {
+	fmt.Println(codewars.RowSumOddNumbers(1))
 }
 
 // import (
