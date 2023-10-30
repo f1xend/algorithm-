@@ -1,7 +1,12 @@
 package main
 
-func main() {
+import (
+	"algorithm/internal/codewars"
+	"fmt"
+)
 
+func main() {
+	fmt.Println(codewars.Number([][2]int{{10, 0}, {3, 5}, {5, 8}}))
 }
 
 // import (

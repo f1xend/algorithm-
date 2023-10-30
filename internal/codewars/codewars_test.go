@@ -184,3 +184,33 @@ func TestStrEndsWith(t *testing.T) {
 		})
 	}
 }
+
+func TestAbbrevName(t *testing.T) {
+	cases := []struct {
+		name     string
+		str      string
+		expected string
+	}{
+		{
+			name:     "case 1",
+			str:      "Sam Harris",
+			expected: "S.H",
+		},
+		{
+			name:     "case 1",
+			str:      "patrick feeney",
+			expected: "P.F",
+		},
+	}
+
+	for _, tc := range cases {
+		tc := tc
+
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
+			got := AbbrevName(tc.str)
+			require.Equal(t, tc.expected, got)
+		})
+	}
+}
